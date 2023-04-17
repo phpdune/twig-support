@@ -4,53 +4,55 @@ declare(strict_types=1);
 
 namespace Dune\Support;
 
+use NumberFormatter;
+
 class TwigRuntimeAction
 {
     /**
-     * asset function, to get the link of css/js things in public/asset folder
+     * truncate filter for twig
      *
-     * @param string $path
+     * @param string $string
+     * @param int $length = 50
+     * @param string $ellipsis = ...
      *
      * @return string
      */
-    public function assetFunction(string $path): string
+    public function truncate(string $string, int $length = 50, string $ellipsis = '...'): string
     {
-        return "asset/{$path}";
+        if (strlen($string) > $length) {
+            return substr(trim($string), 0, $length) . $ellipsis;
+        }
+        return $string;
     }
-       /**
-        * finding route path by its name
-        *
-        * @param string $path
-        * @param array $args[]
-        *
-        * @return null|string
-        */
-    public function routeFunction(string $route, array $args = []): ?string
+    /**
+     * slug filter for twig
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    public function slug(string $string): string
     {
-        $result = route($route, $args);
-        return $result;
+        $string = strtolower($string);
+        $string = str_replace(' ', '-', $string);
+        $string = str_replace('_', '-', $string);
+        $string = str_replace('--', '-', $string);
+        $string = str_replace('__', '-', $string);
+        return $string;
     }
-       /**
-        * get last value of the input fields
-        *
-        * @param string $na.
-        *
-        * @return null|string
-        */
-    public function oldFunction(string $name): ?string
+    /**
+     * currency filter for twing
+     * example : {{ price|currency }} output $272.00 value
+     *
+     * @param int|float $string
+     * @param string $currencyCode = 'USD'
+     *
+     * @return string
+     */
+    public function currency(int|float $string, string $currencyCode = 'USD'): string
     {
-        return old($name);
+        $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
+        return $formatter->formatCurrency($string, $currencyCode);
     }
-       /**
-        * to set custom http request method | PUT | PATH | DELETE
-        *
-        * @param string $na.
-        *
-        * @return null|string
-        */
-      public function methodFunction(string $method): string
-      {
-          return method($method);
-      }
 
 }

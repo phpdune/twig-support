@@ -30,10 +30,13 @@ class TwigExtension extends AbstractExtension
 
         return [
            new TwigFunction('csrf', 'csrf'),
-           new TwigFunction('asset', [TwigRuntimeAction::class,'assetFunction']),
-           new TwigFunction('route', [TwigRuntimeAction::class,'routeFunction']),
-           new TwigExtension('old', TwigRuntimeAction::class, 'oldFunction'),
-           new TwigExtension('method', TwigRuntimeAction::class, 'methodFunction')
+           new TwigFunction('asset', 'asset'),
+           new TwigFunction('route', 'route'),
+           new TwigFunction('old', 'old'),
+           new TwigFunction('method', 'method'),
+           new TwigFunction('errorHas', 'errorHas'),
+           new TwigFunction('error', 'error')
+
           ];
 
     }
@@ -45,7 +48,9 @@ class TwigExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-          //
+           new TwigFilter('truncate', [TwigRuntimeAction::class,'truncate']),
+           new TwigFilter('slug', [TwigRuntimeAction::class,'slug']),
+           new TwigFilter('currency', [TwigRuntimeAction::class,'currency'])
           ];
     }
 }

@@ -15,13 +15,13 @@ use Dune\Support\TwigRuntimeLoader;
 class Twig
 {
     /**
-     * \Twig\Loader\LoaderInterface instance
+     * Twig\Loader\LoaderInterface instance
      *
      * @var FilesystemLoader
      */
     private FilesystemLoader $loader;
     /**
-     * \Twig\Environment instance
+     * Twig\Environment instance
      *
      * @var Environment
      */
