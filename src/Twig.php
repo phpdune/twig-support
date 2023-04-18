@@ -80,11 +80,12 @@ class Twig
        *
        * @return string
        */
-    public function renederBlock(string $block, array $vars = [])
+    public function renderBlock(string $file, string $block, array $vars = [])
     {
-        return $this->twig->renderBlock($block, $vars);
+        $template = $this->twig->load($file);
+        return $template->renderBlock($block, $vars);
     }
-      /**
+    /**
     * adding RuntimeLoader
     *
     * @param RuntimeLoaderInterface $loader
