@@ -5,3 +5,4 @@
 /phpunit.xml        export-ignore
 /phpunit.xml.bak    export-ignore
 /tests              export-ignore
+/phpstan.neon       export-ignore
