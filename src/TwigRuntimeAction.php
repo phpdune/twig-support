@@ -49,7 +49,7 @@ class TwigRuntimeAction
      *
      * @return string
      */
-    public function currency(int|float $string, string $currencyCode = 'USD'): string
+    public function currency(int|float $string, string $currencyCode = 'USD'): string|bool
     {
         $formatter = new NumberFormatter('en_US', NumberFormatter::CURRENCY);
         return $formatter->formatCurrency($string, $currencyCode);

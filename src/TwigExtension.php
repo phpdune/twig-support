@@ -12,7 +12,7 @@ use Dune\Support\TwigRuntimeAction;
 class TwigExtension extends AbstractExtension
 {
     /**
-     * @param none
+     * getting the name
      *
      * @return string
      */
@@ -21,9 +21,9 @@ class TwigExtension extends AbstractExtension
         return 'dune';
     }
       /**
-       * @param none
+       * twig custom functions
        *
-       * @return array
+       * @return array<TwigFunction>
        */
     public function getFunctions(): array
     {
@@ -41,9 +41,9 @@ class TwigExtension extends AbstractExtension
 
     }
       /**
-       * @param none
+       * twig custom filter's
        *
-       * @return array
+       * @return array<TwigFilter>
        */
     public function getFilters(): array
     {

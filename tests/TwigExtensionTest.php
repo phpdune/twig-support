@@ -7,19 +7,19 @@ use Dune\Support\TwigExtension;
 
 class TwigExtensionTest extends TestCase
 {
-    protected $twig;
+    protected TwigExtension $twig;
 
     protected function setUp(): void
     {
         $this->twig = new TwigExtension();
     }
-    public function testTheGetName()
+    public function testTheGetName(): void
     {
         $expected = 'dune';
         $value = $this->twig->getName();
         $this->assertEquals($expected, $value);
     }
-    public function testGetFilters()
+    public function testGetFilters(): void
     {
         $expected = [
                 'truncate',
@@ -31,7 +31,7 @@ class TwigExtensionTest extends TestCase
             $this->assertEquals($expected[$i], $filters[$i]->getName());
         }
     }
-     public function testGetFunctions()
+     public function testGetFunctions(): void
      {
          $expected = [
                  'csrf',

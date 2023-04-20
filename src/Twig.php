@@ -29,18 +29,17 @@ class Twig
     /**
      * twig config
      *
-     * @var array
+     * @var array<string,mixed>|null
      */
-    private array $config;
+    private ?array $config = [];
     /**
      * settings twig environment and adding config settings
      *
      * @param string $path
-     * @param array $config
+     * @param array<string,mixed>|null $config
      *
-     * @return none
      */
-    public function __construct(string $path, array $config = [])
+    public function __construct(string $path, ?array $config = [])
     {
         $this->config = $config;
         $this->loader = new FilesystemLoader($path);
@@ -54,7 +53,6 @@ class Twig
        *
        * @param ExtensionInterface $extension
        *
-       * @return none
        */
     public function addExtension(ExtensionInterface $extension): void
     {
@@ -64,7 +62,7 @@ class Twig
        * twig file rendering
        *
        * @param string $file
-       * @param array $vars[]
+       * @param array<string,mixed> $vars[]
        *
        * @return string
        */
@@ -76,7 +74,7 @@ class Twig
        * twig renderBlock
        *
        * @param string $block
-       * @param array $vars[]
+       * @param array<string,mixed> $vars[]
        *
        * @return string
        */
@@ -90,10 +88,18 @@ class Twig
     *
     * @param RuntimeLoaderInterface $loader
     *
-    * @return none
     */
     public function addRuntimeLoader(RuntimeLoaderInterface $loader): void
     {
         $this->twig->addRuntimeLoader($loader);
+    }
+    /**
+    * getting configuration
+    *
+    * @return array<string,mixed>
+    */
+    public function getConfig(): ?array
+    {
+        return $this->config;
     }
 }
