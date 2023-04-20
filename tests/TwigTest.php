@@ -7,7 +7,7 @@ use Dune\Support\Twig;
 
 class TwigTest extends TestCase
 {
-    protected $twig;
+    protected Twig $twig;
 
     protected function setUp(): void
     {
@@ -15,7 +15,7 @@ class TwigTest extends TestCase
         $this->twig = new Twig($dir);
     }
 
-    public function testRenderFunction()
+    public function testRenderFunction(): void
     {
         $value = $this->twig->render('/tests/twigfile/test.twig', [
           'name' => 'Dune'
@@ -23,7 +23,7 @@ class TwigTest extends TestCase
         $expected = 'The Dune Framework!';
         $this->assertEquals($expected, $value);
     }
-    public function testRenderBlockFunction()
+    public function testRenderBlockFunction(): void
     {
         $value = $this->twig->renderBlock('/tests/twigfile/block.twig', 'test', [
            'name' => 'testing'
